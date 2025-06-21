@@ -5,7 +5,6 @@ from dotenv import load_dotenv
 load_dotenv()
 app = Flask(__name__)
 
-
 @app.route('/')
 def index():
     return render_template('index.html', title="MLH Fellow", url=os.getenv("URL"))
@@ -60,3 +59,39 @@ def experience():
 @app.route('/hobbies')
 def hobbies():
     return render_template("hobbies.html", title="Hobbies")
+
+@app.route("/projects")
+def projects():
+    project_data = [
+        {
+            "title": "PartyPal - HackDavis25",
+            "description": "College can be overwhelming — from classes to job hunts to social pressure. 1 in 5 students feel pressured to drink or use drugs at parties. That’s why we built PartyPal: a live, map-based app that helps students find safe, sober events and nearby resources like Narcan pickup spots, SafeRide, and ERs — all with real-time info.",
+            "tags": ["ReactNative", "TailwindCSS", "Supabase", "Expo"],
+            "image": "img/party.jpg",
+            "github_link": "https://github.com/lizatinku/HackDavis25-PartyPal.git"
+        },
+        {
+            "title": "F1 Race Predictor",
+            "description": "A web app that predicts Formula 1 race outcomes using real-time qualifying data, circuit metadata, and driver history. Trained a Gradient Boosting model on the 2024 F1 season to forecast 2025 race results.",
+            "tags": ["Flask", "FastF1 API", "React"],
+            "image": "img/f1.jpg",
+            "github_link": "https://github.com/lizatinku/AISC-spring25-f1predictor.git"
+        },
+        {
+            "title": "Indian Food Trivia",
+            "description": "An interactive quiz app that takes users on a flavorful journey through Indian cuisine, with questions based on user-selected categories.",
+            "tags": ["NextJS","Typescript", "TailwindCSS"],
+            "image": "img/indianfood.jpg",
+            "demo_link": "food-trivia-deploy.vercel.app",
+            "github_link": "https://github.com/lizatinku/food-trivia.git"
+        },
+        {
+            "title": "Expense Tracker",
+            "description": "Developed a website to simplify financial management for college students inspired by Notion's expense template and Bank of America's AI Erica.",
+            "tags": ["React","Firebase", "FinnHub's API", "CSS"],
+            "image": "img/money.avif",
+            "demo_link": "expense-tracker-ashen-eta.vercel.app",
+            "github_link": "https://github.com/lizatinku/expense-tracker.git"
+        },
+    ]
+    return render_template("projects.html", projects=project_data)
